@@ -53,6 +53,13 @@ span{
     opacity:        0;
 }
 
+.time-limit{
+    float: right;
+    margin-right: 5px;
+    font-size: 0.8rem;
+    font-style: normal;
+}
+
 
 li:nth-child(2n){
     background:     #f7f7f7;

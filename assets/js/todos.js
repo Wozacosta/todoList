@@ -6,9 +6,26 @@ var todos = typeof localStorage.todos !== "undefined" ? JSON.parse(localStorage.
 // Initialize todos from localStorage
 (function(){
     for (var i = 0; i < todos.length; i++){
-        $("ul").append("<li><span><i class='fa fa-trash'></i></span> " + todos[i] + "</li>");
+        // Calculate time left and format it
+        var timeLeft = formatTimeLeft(todos[i].timeLimit);
+        $("ul").append("<li><span><i class='fa fa-trash'></i></span> " + todos[i].content +
+            "<em class='time-limit'>"+ timeLeft +"</em></li>");
     }
 })();
+
+function formatTimeLeft(timeStr){
+    var timeLeft = "";
+    if (!(isNaN(Date.parse(timeStr)))){
+        timeLeft = Date.parse(timeStr) - Date.now();
+        var hours = Math.floor(timeLeft / (3600 * 1000));
+        var minutes = Math.floor((timeLeft - (hours * 3600 * 1000)) / (60 *1000));
+        if (hours > 0){
+            timeLeft = hours + "h:";
+        }
+        timeLeft += minutes + " left";
+    }
+    return timeLeft;
+}
 
 // Check off specific todos by clicking
 $("ul").on("click", "li", function(){
@@ -30,11 +47,20 @@ $("ul").on("click", "span", function(event){
 // Add listener to text input
 $("input[type='text']").keypress(function(event){
    if (event.which === 13){
-       // Extract value out
+       // IF USER SELECTED HOUR, EXTRACT IT
+       var hourSelect = document.querySelector("#hours");
+       hourSelect = hourSelect.options[hourSelect.selectedIndex].value;
+       var date = new Date();
+       date.setHours(date.getHours() + parseInt(hourSelect));
+       var newTodo = {content: "", timeLimit: date };
+
+
+       // Extract value out of the input text.
        var todoText = $(this).val();
        // create new li and add to ul
-       $("ul").append("<li><span><i class='fa fa-trash'></i></span> " + todoText + "</li>");
-        todos.push(todoText);
+       $("ul").append("<li><span><i class='fa fa-trash'></i></span> " + todoText + "<em class='time-limit'>"+ formatTimeLeft(newTodo.timeLimit) +"</em></li>");
+       newTodo.content = todoText;
+       todos.push(newTodo);
        localStorage.todos = JSON.stringify(todos);
        // clear input
        $(this).val("");
