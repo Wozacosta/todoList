@@ -2,4 +2,4 @@
 
 Responsive todoList, using localStorage
 
--[ ] Switch to datejs for the time-left handling
+- [ ] Switch to datejs for the time-left handling
