@@ -19,6 +19,7 @@ function formatTimeLeft(timeStr){
         timeLeft = Date.parse(timeStr) - Date.now();
         var hours = Math.floor(timeLeft / (3600 * 1000));
         var minutes = Math.floor((timeLeft - (hours * 3600 * 1000)) / (60 *1000));
+        minutes = minutes < 10 ? "0" + minutes : minutes;     // 0 left padding on minutes
         if (hours > 0){
             timeLeft = hours + "h:";
         }
@@ -48,8 +49,7 @@ $("ul").on("click", "span", function(event){
 $("input[type='text']").keypress(function(event){
    if (event.which === 13){
        // IF USER SELECTED HOUR, EXTRACT IT
-       var hourSelect = document.querySelector("#hours");
-       hourSelect = hourSelect.options[hourSelect.selectedIndex].value;
+       var hourSelect = document.querySelector("label.active > input").value;
        var date = new Date();
        date.setHours(date.getHours() + parseInt(hourSelect));
        var newTodo = {content: "", timeLimit: date };
@@ -71,3 +71,26 @@ $("input[type='text']").keypress(function(event){
 $(".fa-plus").click(function(){
    $("input[type='text']").fadeToggle(50);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

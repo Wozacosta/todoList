@@ -8,24 +8,33 @@
     <title>Todo List</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/todos.css">
     <script src="assets/js/lib/jquery-3.1.1.js"></script>
 </head>
 <body>
 <div id="container">
     <h1>To-Do List <i class="fa fa-plus" aria-hidden="true"></i></h1>
-    <input type="text" placeholder="Add New Todo">
-    <select id="hours">
-        <option disabled selected>time limit</option>
-        <option value="6">6</option>
-        <option value="12">12</option>
-        <option value="18">18</option>
-        <option value="24">24</option>
-        <option value="inf">&#8734; - no time limit</option>
-    </select>
+    <input type="text" placeholder="Add New Todo, optionally pick a timer">
+    <div class="btn-group btn-group-justified" data-toggle="buttons">
+
+        <label class="btn btn-primary" >
+            <input type="radio" name="options" id="btn6" value="6" autocomplete="off" > 6h
+        </label>
+        <label class="btn btn-primary">
+            <input type="radio" name="options" id="btn12" value="12" autocomplete="off"> 12h
+        </label>
+        <label class="btn btn-primary">
+            <input type="radio" name="options"  id="btn18" value="18" autocomplete="off"> 18h
+        </label>
+        <label class="btn btn-primary">
+            <input type="radio" name="options" id="btn24" value="24" autocomplete="off"> 24h
+        </label>
+    </div>
     <ul>
     </ul>
 </div>
 <script src="assets/js/todos.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </body>
 </html>
